@@ -141,6 +141,26 @@ app.on('ready', function() {
 		}
 	}
 
+	app.on('web-contents-created', (e, contents) => {
+		if (contents.getType() == 'webview') {
+			contents.on('new-window', (e, url) => {
+				e.preventDefault()
+				let win = new BrowserWindow({
+					width: 800,
+					height: 600,
+					title: "",
+					icon: __dirname + '/icon.png',
+					resize: true
+				});
+
+				win.loadURL(url);
+				win.setMenu(null);
+				win.focus();
+				win.setAlwaysOnTop(true);
+			})
+		}
+	})
+
 	ipc.on( "setGrid", ( event, myGrid ) => {
 		global.myGrid = myGrid;
 	});
