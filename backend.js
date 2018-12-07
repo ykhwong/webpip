@@ -10,7 +10,7 @@ const path = require('path');
 var recursive = require("recursive-readdir");
 
 let mainWindow;
-let subwin1, subwin2, subwin3, subwin4;
+let subwin1, subwin2, subwin3, subwin4, subwin5, subwin6, subwin7, subwin8;
 
 app.on('window-all-closed', (e) => {
 	if (process.platform != 'darwin')
@@ -84,7 +84,7 @@ app.on('ready', function() {
 		var r_width = 0;
 		var r_height = 0;
 
-		if (data == "open_4x4") {
+		if (data == "open_2x2") {
 			r_width = dimensions.width / 2;
 			r_height = dimensions.height / 2;
 			subwin1 = new BrowserWindow(createWMpoperty(r_width, r_height, 0, 0));
@@ -110,8 +110,8 @@ app.on('ready', function() {
 			subwin3.on('focus', function(e){ focus_all_grids() });
 			subwin4.on('focus', function(e){ focus_all_grids() });
 
-		} else if (data == "open_8x8") {
-			// 8x8 is not supported as of now
+		} else if (data == "open_4x4") {
+			// 4x4 is not supported as of now
 		}
 	});
 
