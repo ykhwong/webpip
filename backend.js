@@ -7,7 +7,7 @@ const {
 } = require('electron');
 const frontend_dir = 'file://' + __dirname + '/frontend/';
 const path = require('path');
-var recursive = require("recursive-readdir");
+const recursive = require("recursive-readdir");
 
 let mainWindow;
 let subwin = [];
@@ -39,6 +39,19 @@ function createWMpoperty(r_width, r_height, r_x, r_y) {
 	return data;
 }
 
+function createWM(r_width, r_height, multiply, arr) {
+	var len = Math.pow(multiply, 2);
+	for (var i = 0; i < len; i++) {
+		subwin[i] = new BrowserWindow(
+			createWMpoperty(
+				r_width, r_height,
+				arr[i * 2],
+				arr[i * 2 + 1]
+			)
+		);
+	}
+}
+
 app.on('ready', function() {
 	loadExtensions();
 	mainWindow = new BrowserWindow({
@@ -67,58 +80,64 @@ app.on('ready', function() {
 		var dimensions = mainScreen.size;
 		var r_width = 0;
 		var r_height = 0;
+		var arr;
 
 		if (grid_case) {
 			subwin = [];
 			if (data == "open_2x2") {
 				r_width = dimensions.width / 2;
 				r_height = dimensions.height / 2;
-				subwin[0] = new BrowserWindow(createWMpoperty(r_width, r_height, 0, 0));
-				subwin[1] = new BrowserWindow(createWMpoperty(r_width, r_height, r_width, 0));
-				subwin[2] = new BrowserWindow(createWMpoperty(r_width, r_height, 0, r_height));
-				subwin[3] = new BrowserWindow(createWMpoperty(r_width, r_height, r_width, r_height));
+				arr = [
+					0, 0,
+					r_width, 0,
+
+					0, r_height,
+					r_width, r_height
+				];
+				createWM(r_width, r_height, 2, arr);
 			} else if (data == "open_4x4") {
 				r_width = dimensions.width / 4;
 				r_height = dimensions.height / 4;
-				
-				subwin[0] = new BrowserWindow(createWMpoperty(r_width, r_height, 0, 0));
-				subwin[1] = new BrowserWindow(createWMpoperty(r_width, r_height, r_width, 0));
-				subwin[2] = new BrowserWindow(createWMpoperty(r_width, r_height, r_width * 2, 0));
-				subwin[3] = new BrowserWindow(createWMpoperty(r_width, r_height, r_width * 3, 0));
-				
-				subwin[4] = new BrowserWindow(createWMpoperty(r_width, r_height, 0, r_height));
-				subwin[5] = new BrowserWindow(createWMpoperty(r_width, r_height, r_width, r_height));
-				subwin[6] = new BrowserWindow(createWMpoperty(r_width, r_height, r_width * 2, r_height));
-				subwin[7] = new BrowserWindow(createWMpoperty(r_width, r_height, r_width * 3, r_height));
 
-				subwin[8] = new BrowserWindow(createWMpoperty(r_width, r_height, 0, r_height * 2));
-				subwin[9] = new BrowserWindow(createWMpoperty(r_width, r_height, r_width, r_height * 2));
-				subwin[10] = new BrowserWindow(createWMpoperty(r_width, r_height, r_width * 2, r_height * 2));
-				subwin[11] = new BrowserWindow(createWMpoperty(r_width, r_height, r_width * 3, r_height * 2));
+				arr = [
+					0, 0,
+					r_width, 0,
+					r_width * 2, 0,
+					r_width * 3, 0,
 
-				subwin[12] = new BrowserWindow(createWMpoperty(r_width, r_height, 0, r_height * 3));
-				subwin[13] = new BrowserWindow(createWMpoperty(r_width, r_height, r_width, r_height * 3));
-				subwin[14] = new BrowserWindow(createWMpoperty(r_width, r_height, r_width * 2, r_height * 3));
-				subwin[15] = new BrowserWindow(createWMpoperty(r_width, r_height, r_width * 3, r_height * 3));
+					0, r_height,
+					r_width, r_height,
+					r_width * 2, r_height,
+					r_width * 3, r_height,
+
+					0, r_height * 2,
+					r_width, r_height * 2,
+					r_width * 2, r_height * 2,
+					r_width * 3, r_height * 2,
+
+					0, r_height * 3,
+					r_width, r_height * 3,
+					r_width * 2, r_height * 3,
+					r_width * 3, r_height * 3
+				];
+				createWM(r_width, r_height, 4, arr);
 			}
 
-			if (data.match(new RegExp("^open_",""))) {
-				for (var i = 0; i < subwin.length; i++) {
-					subwin[i].loadURL(frontend_dir + '/grid_window_webview.html');
-					subwin[i].focus();
-					subwin[i].on('close', function(e){
-						for (var i = 0; i < subwin.length; i++) {
-							if (!subwin[i].isDestroyed()) {
-								subwin[i].destroy();
-							}
+			for (var i = 0; i < subwin.length; i++) {
+				subwin[i].loadURL(frontend_dir + '/grid_window_webview.html');
+				subwin[i].focus();
+				subwin[i].on('close', function(e){
+					for (var i = 0; i < subwin.length; i++) {
+						if (!subwin[i].isDestroyed()) {
+							subwin[i].destroy();
 						}
-					});
-					subwin[i].on('focus', function(e){
-						for (var i = 0; i < subwin.length; i++) {
-							subwin[i].setAlwaysOnTop(true);
-						}
-					});
-				}
+					}
+				});
+				subwin[i].on('focus', function(e){
+					for (var i = 0; i < subwin.length; i++) {
+						subwin[i].setAlwaysOnTop(true);
+					}
+				});
 			}
 		}
 
