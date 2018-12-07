@@ -10,7 +10,7 @@ const path = require('path');
 var recursive = require("recursive-readdir");
 
 let mainWindow;
-let subwin1, subwin2, subwin3, subwin4, subwin5, subwin6, subwin7, subwin8;
+let subwin = [];
 
 app.on('window-all-closed', (e) => {
 	if (process.platform != 'darwin')
@@ -53,26 +53,9 @@ app.on('ready', function() {
 	mainWindow.loadURL(frontend_dir + 'home.html');
 	mainWindow.setMenu(null);
 	mainWindow.focus();
-	
-	function close_all_grids() {
-		if (!subwin1.isDestroyed()) { subwin1.destroy(); }
-		if (!subwin2.isDestroyed()) { subwin2.destroy(); }
-		if (!subwin3.isDestroyed()) { subwin3.destroy(); }
-		if (!subwin4.isDestroyed()) { subwin4.destroy(); }
-	}
-
-	function focus_all_grids() {
-		subwin1.setAlwaysOnTop(true);
-		subwin2.setAlwaysOnTop(true);
-		subwin3.setAlwaysOnTop(true);
-		subwin4.setAlwaysOnTop(true);
-	}
 
 	mainWindow.on('close', function(e) {
-		subwin1 = null;
-		subwin2 = null;
-		subwin3 = null;
-		subwin4 = null;
+		subwin = [];
 		mainWindow = null;
 		app.quit();
 	});
@@ -87,31 +70,31 @@ app.on('ready', function() {
 		if (data == "open_2x2") {
 			r_width = dimensions.width / 2;
 			r_height = dimensions.height / 2;
-			subwin1 = new BrowserWindow(createWMpoperty(r_width, r_height, 0, 0));
-			subwin2 = new BrowserWindow(createWMpoperty(r_width, r_height, r_width, 0));
-			subwin3 = new BrowserWindow(createWMpoperty(r_width, r_height, 0, r_height));
-			subwin4 = new BrowserWindow(createWMpoperty(r_width, r_height, r_width, r_height));
-			subwin1.loadURL(frontend_dir + '/grid_window_webview.html');
-			subwin2.loadURL(frontend_dir + '/grid_window_webview.html');
-			subwin3.loadURL(frontend_dir + '/grid_window_webview.html');
-			subwin4.loadURL(frontend_dir + '/grid_window_webview.html');
-			subwin1.focus();
-			subwin2.focus();
-			subwin3.focus();
-			subwin4.focus();
-
-			subwin1.on('close', function(e){ close_all_grids(); });
-			subwin2.on('close', function(e){ close_all_grids(); });
-			subwin3.on('close', function(e){ close_all_grids(); });
-			subwin4.on('close', function(e){ close_all_grids(); });
-
-			subwin1.on('focus', function(e){ focus_all_grids() });
-			subwin2.on('focus', function(e){ focus_all_grids() });
-			subwin3.on('focus', function(e){ focus_all_grids() });
-			subwin4.on('focus', function(e){ focus_all_grids() });
-
+			subwin = [];
+			subwin[0] = new BrowserWindow(createWMpoperty(r_width, r_height, 0, 0));
+			subwin[1] = new BrowserWindow(createWMpoperty(r_width, r_height, r_width, 0));
+			subwin[2] = new BrowserWindow(createWMpoperty(r_width, r_height, 0, r_height));
+			subwin[3] = new BrowserWindow(createWMpoperty(r_width, r_height, r_width, r_height));
 		} else if (data == "open_4x4") {
 			// 4x4 is not supported as of now
+		}
+		if (data.match(new RegExp("^open_",""))) {
+			for (var i = 0; i < subwin.length; i++) {
+				subwin[i].loadURL(frontend_dir + '/grid_window_webview.html');
+				subwin[i].focus();
+				subwin[i].on('close', function(e){
+					for (var i = 0; i < subwin.length; i++) {
+						if (!subwin[i].isDestroyed()) {
+							subwin[i].destroy();
+						}
+					}
+				});
+				subwin[i].on('focus', function(e){
+					for (var i = 0; i < subwin.length; i++) {
+						subwin[i].setAlwaysOnTop(true);
+					}
+				});
+			}
 		}
 	});
 
