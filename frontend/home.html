@@ -1,0 +1,45 @@
+<html>
+<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+<script src="jquery.min.js"></script>
+<script src="client_home.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script>if (window.module) module = window.module;</script>
+<head>
+<title>WEB PIP</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<br/>
+
+<div class="center">
+<b>&nbsp;WEB PIP CONFIGURATION</b><br /><br />
+
+<table border="0">
+  <tbody>
+    <tr>
+      <td width="111">&nbsp;DEFAULT URL</td>
+      <td width="310"><input style="width:300px;" id="g_url" placeholder="Type URL to be loaded globally (Optional)"></td>
+    </tr>
+    <tr>
+      <td>&nbsp;Y-OFFSET</td>
+      <td><input style="width:300px;" id="y-offset" placeholder="Integer only (Optional)"></td>
+    </tr>
+    <tr>
+      <td>&nbsp;GRID</td>
+      <td><select id="grid">
+	<option value="4x4">4x4</option>
+	<option value="8x8">8x8 (Not supported)</option>
+	</select></td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+&nbsp;<div id="set_as_default" class="myButton2">SET AS DEFAULT</div>
+&nbsp;<div id="create" class="myButton1">CREATE GRID</div>
+
+</div>
+
+</body>
+</html>
