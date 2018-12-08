@@ -71,10 +71,13 @@ For the standalone version, Chrome extensions will be automatically loaded by se
 
 ## Q&A
 Q1. There is a website that fails to load properly.
+
 A1. Some websites are designed not to work with the innerframe or iframe which may be the issue. Please use the standalone version that does not depend on the iframe.
 
 Q1. My website is dependent on the Chrome extensions which do not seem to work.
+
 A1. For the standalone version, not all extensions are supported due to the Electron's limited API support. Please use the web-based version along with the Chromium-based web browser such as Chrome.
 
 Q1. I have a multi-monitor environment with extended display enabled. Can I use the WebPIP for the non-primary display?
+
 A1. Yes, please use the web-based version. Just move the position of the web browser window to the non-primary display and hit F11 key.
