@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>WEB PIP</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="client_grid_window.js"></script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<br/>
+<div id="home" class="center">
+<table border="0">
+  <tbody>
+    <tr>
+      <td width="111">&nbsp;DEFAULT URL</td>
+      <td width="310"><input style="width:300px;" id="g_url" placeholder="Type URL to be loaded globally (Optional)"></td>
+    </tr>
+    <tr>
+      <td>&nbsp;TOP-OFFSET</td>
+      <td><input style="width:300px;" id="top-offset" placeholder="Integer only (Optional)"> e.g, 75</td>
+    </tr>
+    <tr>
+      <td>&nbsp;LEFT-OFFSET</td>
+      <td><input style="width:300px;" id="left-offset" placeholder="Integer only (Optional)"> e.g, 47</td>
+    </tr>
+    <tr>
+      <td>&nbsp;BOTTOM-OFFSET</td>
+      <td><input style="width:300px;" id="bottom-offset" placeholder="Integer only (Optional)"> e.g, 27</td>
+    </tr>
+    <tr>
+      <td>&nbsp;RIGHT-OFFSET</td>
+      <td><input style="width:300px;" id="right-offset" placeholder="Integer only (Optional)"> e.g, 3</td>
+    </tr>
+    <tr>
+      <td>&nbsp;GRID</td>
+      <td><select id="grid">
+	<option value="2x2">2x2</option>
+	</select></td>
+    </tr>
+  </tbody>
+</table>
+<br />
+&nbsp;*Offsets are applied only in full-screen mode (F11)<br /><br />
+<!--&nbsp;<div id="set_as_default" class="myButton2">SET AS DEFAULT</div>-->
+&nbsp;<div id="create" class="myButton1">CREATE GRID</div>
+</div>
+
+<div id="innerframe">
+	<iframe id="innerframe1" class="frames" src="grid_window_webview.html" frameBorder="0" allowfullscreen></iframe>
+	<iframe id="innerframe2" class="frames" src="grid_window_webview.html" frameBorder="0" allowfullscreen></iframe>
+	<iframe id="innerframe3" class="frames" src="grid_window_webview.html" frameBorder="0" allowfullscreen></iframe>
+	<iframe id="innerframe4" class="frames" src="grid_window_webview.html" frameBorder="0" allowfullscreen></iframe>
+</div>
+</body>
+</html>
