@@ -5,6 +5,8 @@ WebPIP allows multiple web pages to be displayed in full-screen PIP grids. It do
 
 There are two versions of WebPIP; web-based version and standalone version. Please choose either one of the versions depending on the preference.
 
+![WebPIP 2x2 grid](https://raw.githubusercontent.com/ykhwong/webpip/master/resources/2x2_grid_example.png)
+
 ## USAGE
 Download: https://github.com/ykhwong/webpip/releases
 
