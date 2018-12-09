@@ -74,7 +74,12 @@ For the standalone version, Chrome extensions will be automatically loaded by se
 ## Q&A
 Q1. There is a website that fails to load properly.
 
-A1. Some websites are designed not to work with the innerframe or iframe which may be the issue. Please use the standalone version that does not depend on the iframe.
+A1. Some websites send "X-Frame-Options: SAME ORIGIN" that prevents the browser from displaying innerframe or iframe which may be the issue.
+
+* This problem does not occur in the standalone version.
+* There are some Chrome extensions to resolve the issue when using web-based version.
+  * https://chrome.google.com/webstore/detail/ignore-x-frame-headers/gleekbfjekiniecknbkamfmkohkpodhe
+  * https://chrome.google.com/webstore/detail/iframe-allow/gifgpciglhhpmeefjdmlpboipkibhbjg?hl=en
 
 Q1. My website is dependent on the Chrome extensions which do not seem to work.
 
