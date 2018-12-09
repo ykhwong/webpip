@@ -81,10 +81,10 @@ A1. Some websites send "X-Frame-Options: SAME ORIGIN" that prevents the browser 
   * https://chrome.google.com/webstore/detail/ignore-x-frame-headers/gleekbfjekiniecknbkamfmkohkpodhe
   * https://chrome.google.com/webstore/detail/iframe-allow/gifgpciglhhpmeefjdmlpboipkibhbjg?hl=en
 
-Q1. My website is dependent on the Chrome extensions which do not seem to work.
+Q2. My website is dependent on the Chrome extensions which do not seem to work.
 
-A1. For the standalone version, not all extensions are supported due to the Electron's limited API support. Please use the web-based version along with the Chromium-based web browser such as Chrome.
+A2. For the standalone version, not all extensions are supported due to the Electron's limited API support. Please use the web-based version along with the Chromium-based web browser such as Chrome.
 
-Q1. I have a multi-monitor environment with extended display enabled. Can I use the WebPIP for the non-primary display?
+Q3. I have a multi-monitor environment with extended display enabled. Can I use the WebPIP for the non-primary display?
 
-A1. Yes, please use the web-based version. Just move the position of the web browser window to the non-primary display and hit F11 key.
+A3. Yes, please use the web-based version. Just move the position of the web browser window to the non-primary display and hit F11 key.
