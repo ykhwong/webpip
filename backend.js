@@ -33,7 +33,7 @@ function createWMpoperty(r_width, r_height, r_x, r_y) {
 		webPreferences: {
 			webSecurity: false,
 			plugins: true,
-			preload: path.resolve(frontend_dir, 'preload.js')
+			preload: path.resolve(__dirname + '/frontend/' + 'preload.js')
 		}
 	};
 	return data;
@@ -138,6 +138,8 @@ app.on('ready', function() {
 						subwin[i].setAlwaysOnTop(true);
 					}
 				});
+				subwin[i].webContents.session.clearCache(function(){ });
+				subwin[i].webContents.openDevTools();
 			}
 		}
 

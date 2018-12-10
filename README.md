@@ -14,7 +14,7 @@ Download: https://github.com/ykhwong/webpip/releases
 For the web-based version, the only requirement is a modern web browser. Mainly tested with Google Chrome.
 Simply download the web-version archive, extract it and run the index.html.
 
-"WEB PIP CONFIGURATION" will be appeared as soons as the the WebPIP is executed.
+"WEB PIP CONFIGURATION" will be appeared as soon as the the WebPIP is executed.
 The following can be specified:
 * Default URL (Optional)
 * Top-offset (Optional)
@@ -29,7 +29,7 @@ Click "CREATE GRID" button to create the grid view.
 Standalone version does not require any web client.
 Just download and run the executable. Currently tested on Microsoft Windows only.
 
-"WEB PIP CONFIGURATION" will be appeared as soons as the the WebPIP is executed.
+"WEB PIP CONFIGURATION" will be appeared as soon as the the WebPIP is executed.
 The following can be specified:
 * Default URL (Optional)
 * Y-offset (Optional)
