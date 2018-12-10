@@ -139,7 +139,6 @@ app.on('ready', function() {
 					}
 				});
 				subwin[i].webContents.session.clearCache(function(){ });
-				subwin[i].webContents.openDevTools();
 			}
 		}
 
